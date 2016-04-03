@@ -1,0 +1,23 @@
+{
+  "name": "node-which",
+  "version": "1.0.0",
+  "description": "which: locate a command",
+  "main": "which.js",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrLYC/Node-Which.git"
+  },
+  "author": "lyc",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/MrLYC/Node-Which/issues"
+  },
+  "homepage": "https://github.com/MrLYC/Node-Which#readme"
+}
