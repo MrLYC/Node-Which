@@ -4,7 +4,9 @@
   "description": "which: locate a command",
   "main": "which.js",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "fs": "0.0.2",
+    "which-os": "0.0.2"
   },
   "devDependencies": {},
   "scripts": {

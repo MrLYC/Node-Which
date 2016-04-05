@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var command = require("./command");
+
 function parse_command_line(cmd_args) {
     var program = require("commander");
 
@@ -38,5 +40,8 @@ function parse_command_line(cmd_args) {
 
 (function main() {
     var args = parse_command_line(process.argv);
-    // TODO: find the command
+    var cmd = new command(args.filename);
+    cmd.find(function (cmd, path) {
+        console.log(path);
+    }, args.all);
 })();
