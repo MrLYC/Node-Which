@@ -34,14 +34,24 @@ function parse_command_line(cmd_args) {
         
     program.parse(cmd_args);
     args.all = program.all || false;
-    
+
+    if (args.filename == null) {
+        program.
+        process.exit(2);
+    }
+
     return args;
 }
 
 (function main() {
     var args = parse_command_line(process.argv);
+    var exit_code = 1;
+
     var cmd = new command(args.filename);
     cmd.find(function (cmd, path) {
         console.log(path);
+        exit_code = 0;
     }, args.all);
+
+    process.exit(exit_code);
 })();
