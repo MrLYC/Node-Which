@@ -6,7 +6,7 @@ var S_IXUSR = 100;  // execute/search permission, owner
 function OsCompatibility() {
     var which_os = require("which-os");
     var os_name = which_os();
-    if (os_name.toLowerCase().startsWith("window")) {
+    if (os_name.search("^[wW]indow") == 0) {
         this.pathsep = ";";
         this.sep = "\\";
     } else {
