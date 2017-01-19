@@ -4,9 +4,9 @@ var path = require("path");
 var S_IXUSR = 100;  // execute/search permission, owner
 
 function OsCompatibility() {
-    var which_os = require("which-os");
-    var os_name = which_os();
-    if (os_name.search("^[wW]indow") === 0) {
+    var whichOs = require("which-os");
+    var osName = whichOs();
+    if (osName.search("^[wW]indow") === 0) {
         this.pathsep = ";";
         this.sep = "\\";
     } else {
@@ -19,23 +19,24 @@ var Command = module.exports = function Command (name) {
     this.name = name;
 };
 
-var os_compatibility = new OsCompatibility();
+var osCompatibility = new OsCompatibility();
 
-Command.prototype.path_list = function () {
+Command.prototype.pathList = function () {
     var path = process.env.PATH || "";
-    return path.split(os_compatibility.pathsep);
+    return path.split(osCompatibility.pathsep);
 }
 
-Command.prototype.is_executable = function (filename) {
+Command.prototype.isExecutable = function (filename) {
     var result = false;
+    var stats = null;
 
     try {
-        var stats = fs.statSync(filename);
+        stats = fs.statSync(filename);
     } catch (err) {
         return false;
     };
 
-    if (typeof(stats) == 'undefined') {
+    if (typeof(stats) == "undefined") {
         return false;
     }
 
@@ -46,11 +47,11 @@ Command.prototype.is_executable = function (filename) {
 }
 
 Command.prototype.find = function (cb, all) {
-    var path_list = this.path_list();
+    var pathList = this.pathList();
 
-    for (var i in path_list) {
-        var root = path_list[i];
-        if (this.is_executable(path.join(root, this.name))) {
+    for (var i in pathList) {
+        var root = pathList[i];
+        if (this.isExecutable(path.join(root, this.name))) {
             cb(this, root);
 
             if (!all) {
